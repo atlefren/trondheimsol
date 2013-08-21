@@ -21,14 +21,33 @@
 
         tagName: "li",
 
+        className: "media",
+
         template: $("#beer_template").html(),
 
         render: function () {
 
+            var user = false;
+            if (this.model.has("user")) {
+                user = this.model.get("user").user_name;
+            }
+            var date = false;
+            if (this.model.has("created_at")){
+                date = moment(this.model.get("created_at")).format("D.M.YYYY");
+            }
+
+            var checkins = false;
+            if (this.model.has("total_count")){
+                checkins = this.model.get("total_count");
+            }
+
             var data = {
                 "beer_name": this.model.get("beer").beer_name,
                 "brewery_name": this.model.get("brewery").brewery_name,
-                "beer_label": this.model.get("beer").beer_label
+                "beer_label": this.model.get("beer").beer_label,
+                "user": user,
+                "date": date,
+                "checkins": checkins
             };
 
             this.$el.html(_.template(this.template, data));
@@ -62,7 +81,6 @@
         },
 
         render: function () {
-            console.log(this.model.get("media").items[0].photo.photo_img_md)
             var data = {
                 "venue_name": this.model.get("venue_name"),
                 "venue_address": this.model.get("location").venue_address,
@@ -81,13 +99,10 @@
     });
 
 
-    _.each([66084], function (venue_id) {
+    _.each([66084, 225403, 87730], function (venue_id) {
         var venue = new Venue({"venue_id": venue_id});
         var venueView = new VenueView({"model": venue});
         $("#olliste").append(venueView.$el);
         venue.fetch();
     });
-
-
-    console.log("init")
 }());

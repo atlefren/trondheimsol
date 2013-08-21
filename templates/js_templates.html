@@ -1,21 +1,43 @@
 <script type="text/template" id="beer_template">
-    <img width="40" height="40" src="<%= beer_label %>" />
-    <%= beer_name %> - <%= brewery_name %>
+    <div class="pull-left">
+        <img width="40" height="40" src="<%= beer_label %>" class="media-object"/>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading"><%= beer_name %></h4>
+        <strong><%= brewery_name %></strong>
+        <% if(user && date) { %> (<%= user %>, <%= date %>) <%}%>
+        <% if(checkins) { %> (<%= checkins %> checkins) <%}%>
+    </div>
 </script>
 
 <script type="text/template" id="venue_template">
-    <h2><%= venue_name %></h2>
-    <%= primary_category %> <br/>
-    <a href="<%= map_url %>" target="_blank"><%=venue_address %></a><br/>
-    Antall unike besøkende: <%= total_user_count %> <br/>
-    Antall checkins: <%= total_count %> <br/>
+    <div class="well">
+        <h2><%= venue_name %></h2>
 
-    Topp 10 øl: <br>
-    <ol id="top_10_beers"></ol>
+        <p class="lead"><%= primary_category %></p>
 
-    Siste chekins: <br>
-    <ul id="last_checkins"></ul>
+        <dl class="dl-horizontal">
+            <dt>Adresse</dt>
+            <dd><a href="<%= map_url %>" target="_blank"><%=venue_address %></a></dd>
+            <dt>Antall unike besøkende</dt>
+            <dd><%= total_user_count %></dd>
+            <dt>Antall checkins</dt>
+            <dd><%= total_count %></dd>
+        </dl>
 
-    Siste Ølbilde: <br/>
-    <img src="<%= beer_image %>" />
+        <h3>Topp 10 øl</h3>
+        <ul class="media-list" id="top_10_beers"></ul>
+
+        <h3>Siste chekins</h3>
+        <ul class="media-list" id="last_checkins"></ul>
+
+        <h3>Siste Ølbilde</h3>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="thumbnail">
+                    <img src="<%= beer_image %>" />
+                </div>
+            </div>
+        </div>
+    </div>
 </script>
