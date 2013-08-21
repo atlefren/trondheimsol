@@ -1,4 +1,4 @@
 Trondheimsøl
 ============
 
-app som heter data fra untappd og viser på web
+App som heter data fra Untappd og viser på web vha Backbone.js og Bootstrap.
