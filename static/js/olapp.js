@@ -33,7 +33,7 @@
             }
             var date = false;
             if (this.model.has("created_at")){
-                date = moment(this.model.get("created_at")).format("D.M.YYYY");
+                date = moment(this.model.get("created_at")).format("HH.mm D.M.YYYY");
             }
 
             var checkins = false;
