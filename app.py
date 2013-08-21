@@ -3,7 +3,7 @@
 
 import os
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 
 app = Flask(__name__)
@@ -18,4 +18,4 @@ def api(venue_id):
 
     filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data.json')
     json_data = open(filename)
-    json.load(json_data)
+    return jsonify(json.load(json_data))
