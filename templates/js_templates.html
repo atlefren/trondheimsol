@@ -1,0 +1,21 @@
+<script type="text/template" id="beer_template">
+    <img width="40" height="40" src="<%= beer_label %>" />
+    <%= beer_name %> - <%= brewery_name %>
+</script>
+
+<script type="text/template" id="venue_template">
+    <h2><%= venue_name %></h2>
+    <%= primary_category %> <br/>
+    <a href="<%= map_url %>" target="_blank"><%=venue_address %></a><br/>
+    Antall unike besøkende: <%= total_user_count %> <br/>
+    Antall checkins: <%= total_count %> <br/>
+
+    Topp 10 øl: <br>
+    <ol id="top_10_beers"></ol>
+
+    Siste chekins: <br>
+    <ul id="last_checkins"></ul>
+
+    Siste Ølbilde: <br/>
+    <img src="<%= beer_image %>" />
+</script>

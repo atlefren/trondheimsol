@@ -26,12 +26,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div id="col1" class="col-md-4"></div>
-        <div id="col2" class="col-md-4"></div>
-        <div id="col3" class="col-md-4"></div>
+    <div class="row" id="olliste">
     </div>
-
 </div>
 
 <div id="footer">
@@ -40,15 +36,12 @@
     </div>
 </div>
 
+{% include "js_templates.html" %}
 
 <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="////cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
-<script type="text/javascript">
-    (function (ns, undefined) {
-        "use strict";
+<script src="{{ url_for('static', filename='js/olapp.js') }}" ></script>
 
-    }());
-</script>
 </body>
 </html>
