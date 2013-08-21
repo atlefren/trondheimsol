@@ -81,14 +81,18 @@
         },
 
         render: function () {
+
+            var image = this.model.get("media").items[0];
             var data = {
                 "venue_name": this.model.get("venue_name"),
                 "venue_address": this.model.get("location").venue_address,
                 "primary_category": this.model.get("primary_category"),
                 "total_user_count": this.model.get("stats").total_user_count,
                 "total_count": this.model.get("stats").total_count,
-                "beer_image": this.model.get("media").items[0].photo.photo_img_md,
-                "map_url": "https://maps.google.com/?q=" + this.model.get("location").lat + "," + this.model.get("location").lng
+                "beer_image": image.photo.photo_img_md,
+                "map_url": "https://maps.google.com/?q=" + this.model.get("location").lat + "," + this.model.get("location").lng,
+                "image_user": image.user.user_name,
+                "image_date": moment(image.created_at).format("HH.mm D.M.YYYY")
             };
 
             this.$el.html(_.template(this.template, data));

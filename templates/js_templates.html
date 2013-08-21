@@ -24,19 +24,24 @@
             <dt>Antall checkins</dt>
             <dd><%= total_count %></dd>
         </dl>
+        <hr>
 
         <h3>Topp 10 øl</h3>
         <ul class="media-list" id="top_10_beers"></ul>
+        <hr>
 
         <h3>Siste chekins</h3>
         <ul class="media-list" id="last_checkins"></ul>
+        <hr>
 
         <h3>Siste Ølbilde</h3>
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div class="thumbnail">
                     <img src="<%= beer_image %>" />
+                    <p>Bilde: <%= image_user %>, (<%= image_date %>)</p>
                 </div>
+
             </div>
         </div>
     </div>
