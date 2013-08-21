@@ -11,7 +11,7 @@ import urlparse
 redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6379'))
 
 app = Flask(__name__)
-cache = RedisCache(host=redis_url.hostname, port=redis_url.port, password=redis_url.password, db=0, default_timeout=10 * 60 * 1000, key_prefix="beer_")
+cache = RedisCache(host=redis_url.hostname, port=redis_url.port, password=redis_url.password, db=0, default_timeout=5 * 60 * 1000, key_prefix="beer_")
 
 @app.route('/')
 def index():
