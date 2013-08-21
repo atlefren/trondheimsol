@@ -89,6 +89,7 @@
                 "primary_category": this.model.get("primary_category"),
                 "total_user_count": this.model.get("stats").total_user_count,
                 "total_count": this.model.get("stats").total_count,
+                "user_count": this.model.get("stats").user_count,
                 "beer_image": image.photo.photo_img_md,
                 "map_url": "https://maps.google.com/?q=" + this.model.get("location").lat + "," + this.model.get("location").lng,
                 "image_user": image.user.user_name,
