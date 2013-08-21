@@ -3,8 +3,8 @@
 
 import os
 import json
+import requests
 from flask import Flask, render_template, jsonify
-
 
 app = Flask(__name__)
 
@@ -14,8 +14,6 @@ def index():
 
 @app.route('/api/<int:venue_id>')
 def api(venue_id):
-    print venue_id
-
-    filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data.json')
-    json_data = open(filename)
-    return jsonify(json.load(json_data))
+    url = "http://api.untappd.com/v4/venue/info/%s?client_id=%s&client_secret=%s" %(venue_id, os.environ['UT_CLIENT_ID'], os.environ['UT_CLIENT_SECRET'])
+    r = requests.get(url)
+    return jsonify(r.json())
