@@ -21,7 +21,7 @@ def index():
 def api(venue_id):
     data = cache.get(str(venue_id))
     if data is None:
-        url = "http://api.untappd.com/v4/venue/info/%s?client_id=%s&client_secret=%s" %(venue_id, os.environ['UT_CLIENT_ID'], os.environ['UT_CLIENT_SECRET'])
+        url = "https://api.untappd.com/v4/venue/info/%s?client_id=%s&client_secret=%s" %(venue_id, os.environ['UT_CLIENT_ID'], os.environ['UT_CLIENT_SECRET'])
         r = requests.get(url)
         data = r.json()
         cache.set(str(venue_id), data)
