@@ -63,7 +63,8 @@
 
         render: function () {
             this.$el.html("");
-            this.collection.each(function (beer) {
+            var top10 = this.collection.first(10);
+            _.each(top10, function (beer) {
                 this.$el.append(new BeerView({"model": beer}).render().$el);
             }, this);
             return this;
@@ -97,17 +98,37 @@
             };
 
             this.$el.html(_.template(this.template, data));
-            this.topbeerlist = new BeerListView({"el": this.$("#top_10_beers"), "collection": new Beers(this.model.get("top_beers").items)}).render();
-            this.lastbeerlist = new BeerListView({"el": this.$("#last_checkins"), "collection": new Beers(this.model.get("checkins").items)}).render();
+            this.topbeerlist = new BeerListView({
+                "el": this.$("#top_10_beers"),
+                "collection": new Beers(this.model.get("top_beers").items)
+            }).render();
+            this.lastbeerlist = new BeerListView({
+                "el": this.$("#last_checkins"),
+                "collection": new Beers(this.model.get("checkins").items)
+            }).render();
             return this;
         }
     });
 
-
-    _.each([66084, 225403, 87730], function (venue_id) {
+    function createVenue(venue_id) {
         var venue = new Venue({"venue_id": venue_id});
         var venueView = new VenueView({"model": venue});
-        $("#olliste").append(venueView.$el);
         venue.fetch();
-    });
+        return venueView.$el;
+
+    }
+
+    var venues = [3327343, 2786348, 198215, 2078603, 66084, 225403, 87730];
+    var rows = _.chain(venues)
+        .groupBy(function(element, index){
+            return Math.floor(index / 3);
+        })
+        .map(function (row) {
+            var rowElement = $('<div class="row"></div>');
+            rowElement.append(_.map(row, createVenue));
+            return rowElement;
+        })
+        .value();
+    $("#olliste").append(rows);
+
 }());
