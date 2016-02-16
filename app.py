@@ -8,7 +8,7 @@ from flask import Flask, render_template, jsonify
 from werkzeug.contrib.cache import RedisCache
 import urlparse
 
-redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6379'))
+redis_url = urlparse.urlparse(os.environ.get('REDIS_URL', 'redis://localhost:6379'))
 
 app = Flask(__name__)
 cache = RedisCache(host=redis_url.hostname, port=redis_url.port, password=redis_url.password, db=0, default_timeout=5 * 60, key_prefix="beer__")
